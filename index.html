@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 번호 생성기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .lotto-number {
+            display: inline-block;
+            margin: 5px;
+            padding: 15px;
+            border-radius: 50%;
+            background-color: #ffcc00;
+            color: #fff;
+            font-size: 1.5em;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>로또 번호 생성기</h1>
+        <div id="lotto-numbers">
+            <!-- 로또 번호가 여기에 표시됩니다 -->
+        </div>
+        <button onclick="generateLottoNumbers()">번호 생성</button>
+    </div>
+
+    <script>
+        function generateLottoNumbers() {
+            const numbers = [];
+            while (numbers.length < 6) {
+                const num = Math.floor(Math.random() * 45) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            numbers.sort((a, b) => a - b);
+
+            const lottoNumbersDiv = document.getElementById('lotto-numbers');
+            lottoNumbersDiv.innerHTML = '';
+            numbers.forEach(number => {
+                const numberDiv = document.createElement('div');
+                numberDiv.className = 'lotto-number';
+                numberDiv.textContent = number;
+                lottoNumbersDiv.appendChild(numberDiv);
+            });
+        }
+    </script>
+</body>
+</html>
